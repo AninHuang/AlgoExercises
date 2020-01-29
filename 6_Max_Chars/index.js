@@ -6,22 +6,32 @@
 // maxChar("apple 1231111") === "1"
 
 function maxChar(str) {
-  let charsCounter = {};
+  let charMap = {};
+  let max = 0;
+  let maxChar = '';
 
-  for (let i = 0; i < str.length; i++) {
-    const char = str[i];
+  // for (let i = 0; i < str.length; i++) {
+  //   const char = str[i];
 
-    if (!charsCounter[char]) {
-      charsCounter[char] = 1;
-    } else {
-      charsCounter[char] += 1;
+  //   if (!charMap[char]) {
+  //     charMap[char] = 1;
+  //   } else {
+  //     charMap[char] += 1;
+  //   }
+  // }
+
+  for (let char of str) {
+    charMap[char] = charMap[char] + 1 || 1;
+  }
+  
+  for (let char in charMap) {
+    if (charMap[char] > max) {
+      max = charMap[char];
+      maxChar = char
     }
   }
 
-  let arrCharsCounter = Object.values(charsCounter);
-  let maxValue = Math.max(...arrCharsCounter);
-
-  return // How to get key by its value(maxValue) in object??
+  return maxChar;
 }
 
 module.exports = maxChar;
