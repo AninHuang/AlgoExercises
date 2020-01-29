@@ -10,19 +10,36 @@
 
 function chunk(array, size) {
   const chunked = [];
+  let left = 0;
+  let right = size;
+  let quotient = Math.floor(array.length/size);
+  let remainder = array.length % size;
+  
+  while (chunked.length < quotient + remainder) {
+    let sliced = array.slice(left, right);
 
-  for (let element of array) {
-    const last = chunked[chunked.length - 1];
-
-    if (!last || last.length === size) {
-      // Push in a new chuck and immediately put the element
-      chunked.push([element]);
-    } else {
-      last.push(element);
-    }
+    chunked.push(sliced);
+    left = left + size;
+    right = right + size;
   }
-
-  return chunked;
 }
 
 module.exports = chunk;
+
+// Solution #1
+// function chunk(array, size) {
+//   const chunked = [];
+
+//   for (let element of array) {
+//     const last = chunked[chunked.length - 1];
+
+//     if (!last || last.length === size) {
+//       // Push in a new chuck and immediately put the element
+//       chunked.push([element]);
+//     } else {
+//       last.push(element);
+//     }
+//   }
+
+//   return chunked;
+// }
