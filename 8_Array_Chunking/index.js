@@ -10,18 +10,14 @@
 
 function chunk(array, size) {
   const chunked = [];
-  let left = 0;
-  let right = size;
-  let quotient = Math.floor(array.length/size);
-  let remainder = array.length % size;
+  let index = 0;
   
-  while (chunked.length < quotient + remainder) {
-    let sliced = array.slice(left, right);
-
-    chunked.push(sliced);
-    left = left + size;
-    right = right + size;
+  while (index < array.length) {
+    chunked.push(array.slice(index, index + size));
+    index +=  size;
   }
+
+  return chunked;
 }
 
 module.exports = chunk;
