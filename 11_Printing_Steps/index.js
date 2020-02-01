@@ -20,9 +20,6 @@
 
 // Solution #2 - Recursion
 function steps(n, row = 0, stair = '') {
-  //let row = 0;
-  //let stair = '';
-
   if (n === row) {
     return;
   }
@@ -33,13 +30,9 @@ function steps(n, row = 0, stair = '') {
     return;
   }
 
-  if (stair.length <= row) {
-    stair += '#';
-  } else {
-    stair += ' ';
-  }
+  const add = stair.length <= row ? '#' : ' ';
 
-  steps(n, row, stair);
+  steps(n, row, stair + add);
 }
 
 module.exports = steps;
