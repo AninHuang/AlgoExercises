@@ -14,25 +14,50 @@
 //       ' ### '
 //       '#####'
 
-function pyramid(n) {
-  let midpoint = Math.floor((2 * n - 1) / 2);
-
-  // Row
-  for (let row = 0; row < n; row++) {
-    let level = '';
-
-    // Column
-    for (let column = 0; column < 2 * n - 1; column++) {
-      // ? <= column <= ?
-      if (midpoint - row <= column && midpoint + row >= column) {
-        level += '#';
-      } else {
-        level += ' ';
-      }
-    }
-
-    console.log(level);
+// Solution #2 - Recursion
+function pyramid(n, row = 0, level = '') {
+  if (row === n) {
+    return;
   }
+
+  if (level.length === 2 * n - 1) {
+    console.log(level);
+    pyramid(n, row + 1);
+    return;
+  }
+
+  const midpoint = Math.floor((2 * n - 1) / 2);
+  let add;
+
+  if (midpoint - row <= level.length && midpoint + row >= level.length) {
+    add = '#';
+  } else {
+    add = ' ';
+  }
+
+  pyramid(n, row, level + add);
 }
 
 module.exports = pyramid;
+
+// Solution #1 - Iteration
+// function pyramid(n) {
+//   let midpoint = Math.floor((2 * n - 1) / 2);
+
+//   // Row
+//   for (let row = 0; row < n; row++) {
+//     let level = '';
+
+//     // Column
+//     for (let column = 0; column < 2 * n - 1; column++) {
+//       // ? <= column <= ?
+//       if (midpoint - row <= column && midpoint + row >= column) {
+//         level += '#';
+//       } else {
+//         level += ' ';
+//       }
+//     }
+
+//     console.log(level);
+//   }
+// }
