@@ -8,17 +8,27 @@
 // Example:
 //   fib(4) === 3
 
+// Solution #2 - Recursion
 function fib(n) {
-  const result = [0, 1];
-
-  for (let i = 2; i <= n; i++) {
-    const a = result[i - 2];
-    const b = result[i - 1];
-
-    result.push(a + b);
+  if (n < 2) {
+    return n;
   }
 
-  return result[n];
+  return fib(n - 1) + fib(n - 2);
 }
 
 module.exports = fib;
+
+// Solution #1 - Iteration
+// function fib(n) {
+//   const result = [0, 1];
+
+//   for (let i = 2; i <= n; i++) {
+//     const a = result[i - 2];
+//     const b = result[i - 1];
+
+//     result.push(a + b);
+//   }
+
+//   return result[n];
+// }
